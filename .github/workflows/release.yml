@@ -11,11 +11,9 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      # usage of GRAFANA_API_KEY is deprecated
-      # GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
-      GRAFANA_ACCESS_POLICY_TOKEN: ${{ secrets.GRAFANA_ACCESS_POLICY_TOKEN }}
     steps:
       - uses: actions/checkout@v3
 
       - uses: grafana/plugin-actions/build-plugin@build-plugin
+        with:
+          policy_token: ${{ secrets.GRAFANA_ACCESS_POLICY_TOKEN }}
